@@ -1,28 +1,47 @@
 require 'csv'
+class Task
+	attr_accessor :new_task
+	def initialize(new_task)
+		$new_task = new_task
+	end
+end
 
 class List
+	attr_accessor :file
 	def initialize
 		@file = 'todo.csv'
+		@array = []
 	end
 
-	# def welcome
-	# 	puts "Welcome to the ToDo List, alpha version 1!"
-	# 	puts "Kindly choose your choice today :)"
-	# end
-
+#Listing out the task from the CSV file
 	def tasks
-		puts "Listing out the tasks"
+		puts "Listing out the tasks.....\n\n"
     CSV.foreach(@file) do |row|
       puts row
-      # a = row.to_hash
+      # p task = Task.new(row)
+      @array << row
     end
+  end
+
+#Now we're trying to put the new task into the add method
+  def add(input)
+  	puts input
+  end
+
+  def delete
+  end
+
+  def save
   end
 
 end
 
 list = List.new
-# list.welcome
-list.tasks
+# list.tasks
+list.add(Task.new("Walk the dog"))
+
+Task.new("Walk the dog")
+p $new_task
 
 # What classes do you need?
 
