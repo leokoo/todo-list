@@ -1,9 +1,14 @@
 require 'csv'
 class Task
-	attr_accessor :new_task
-	def initialize(new_task)
-		$new_task = new_task
+	attr_accessor :name
+	def initialize(name)
+		@name = name
 	end
+
+	def show
+		puts $name
+	end
+
 end
 
 class List
@@ -25,7 +30,7 @@ class List
 
 #Now we're trying to put the new task into the add method
   def add(input)
-  	puts input
+  	# puts input
   end
 
   def delete
@@ -38,10 +43,12 @@ end
 
 list = List.new
 # list.tasks
-list.add(Task.new("Walk the dog"))
+# list.add(Task.new("Walk the dog"))
 
-Task.new("Walk the dog")
-p $new_task
+array2 = []
+task = Task.new("Walk the dog")
+p task.name
+
 
 # What classes do you need?
 
