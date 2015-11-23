@@ -1,14 +1,10 @@
 require 'csv'
 class Task
 	attr_accessor :name
+	# We initialize as an instance var as class and global variables would not result in an object \^.^/
 	def initialize(name)
 		@name = name
 	end
-
-	def show
-		puts $name
-	end
-
 end
 
 class List
@@ -22,15 +18,25 @@ class List
 	def tasks
 		puts "Listing out the tasks.....\n\n"
     CSV.foreach(@file) do |row|
-      puts row
-      # p task = Task.new(row)
-      @array << row
+      task = Task.new(row)
+      @array << task
     end
+    p @array
+  end
+
+#Objects are now working
+  def objectize
+		puts "Listing out the tasks.....\n\n"
+    CSV.foreach(@file) do |row|
+      task = Task.new(row)
+      @array << task
+    end
+    p @array
   end
 
 #Now we're trying to put the new task into the add method
   def add(input)
-  	# puts input
+  	p input
   end
 
   def delete
@@ -42,12 +48,8 @@ class List
 end
 
 list = List.new
-# list.tasks
-# list.add(Task.new("Walk the dog"))
-
-array2 = []
-task = Task.new("Walk the dog")
-p task.name
+list.tasks
+list.add(Task.new("Walk the dog"))
 
 
 # What classes do you need?
