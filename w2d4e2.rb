@@ -14,42 +14,43 @@ class List
 		@array = []
 	end
 
-#Listing out the task from the CSV file
-	def tasks
-		puts "Listing out the tasks.....\n\n"
+#Objectize is to take the CSV and put it in an @array
+  def objectize
     CSV.foreach(@file) do |row|
-      task = Task.new(row)
+      task = Task.new(row[0])
       @array << task
     end
-    p @array
   end
 
-#Objects are now working
-  def objectize
-		puts "Listing out the tasks.....\n\n"
-    CSV.foreach(@file) do |row|
-      task = Task.new(row)
-      @array << task
+#Listing out the task from the CSV file
+	def tasks
+		puts "\nThe tasks!\n\n"
+    @array.map do |row|
+    	p row.name
     end
-    p @array
   end
 
 #Now we're trying to put the new task into the add method
   def add(input)
-  	p input
+  	@array << input
+  	tasks
   end
-
-  def delete
+#delete_at deletes the item at array num
+  def delete(input)
+  	@array.delete_at(input)
+  	tasks
   end
 
   def save
   end
-
 end
 
 list = List.new
+list.objectize
 list.tasks
-list.add(Task.new("Walk the dog"))
+# list.add(Task.new("Walk the dog"))
+list.delete(1)
+
 
 
 # What classes do you need?
